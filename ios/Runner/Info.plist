@@ -23,27 +23,48 @@
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
-	<true/>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>CADisableMinimumFrameDurationOnPhone</key>
-	<true/>
-	<key>UIApplicationSupportsIndirectInputEvents</key>
-	<true/>
+         <true/>
+         <key>NSCameraUsageDescription</key>
+         <string>ulearning requires access to the camera so you can take photos to show profile.</string>
+
+         <key>NSLocationWhenInUseUsageDescription</key>
+         <string>The app needs the location, Get the location of your city and match the corresponding profile</string>
+
+         <key>NSMicrophoneUsageDescription</key>
+         <string>ulearning requires access to the Microphone so you can take call.</string>
+
+         <key>NSPhotoLibraryUsageDescription</key>
+         <string>ulearning requires access to the photos library so you can upload photos of profile.</string>
+
+         <key>UIApplicationSupportsIndirectInputEvents</key>
+
+         <true/>
+
+         <key>UIBackgroundModes</key>
+
+         <array>
+          <string>fetch</string>
+          <string>remote-notification</string>
+         </array>
+
+         <key>UILaunchStoryboardName</key>
+         <string>LaunchScreen</string>
+         <key>UIMainStoryboardFile</key>
+
+         <string>Main</string>
+         <key>UISupportedInterfaceOrientations</key>
+         <array>
+          <string>UIInterfaceOrientationLandscapeLeft</string>
+          <string>UIInterfaceOrientationLandscapeRight</string>
+          <string>UIInterfaceOrientationPortrait</string>
+         </array>
+
+         <key>UISupportedInterfaceOrientations~ipad</key>
+         <array>
+          <string>UIInterfaceOrientationPortrait</string>
+         </array>
+
+         <key>UIViewControllerBasedStatusBarAppearance</key>
+         <false/>
 </dict>
 </plist>

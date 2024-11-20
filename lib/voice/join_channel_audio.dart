@@ -57,7 +57,10 @@ class _State extends State<JoinChannelAudio> {
   }
 
   Future<void> _initEngine() async {
+    [Permission.microphone].request();
+
     _engine = createAgoraRtcEngine();
+
     await _engine.initialize(RtcEngineContext(
       appId: config.appId,
     ));
