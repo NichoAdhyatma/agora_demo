@@ -16,6 +16,7 @@ class BasicVideoExample extends StatefulWidget {
 // Application state class
 class _BasicVideoExampleState extends State<BasicVideoExample> {
   int? _remoteUid; // The UID of the remote user
+  int? _localUid; // The UID of the local user
   bool _localUserJoined =
       false; // Indicates whether the local user has joined the channel
   late RtcEngine _engine; // The RtcEngine instances
@@ -45,6 +46,7 @@ class _BasicVideoExampleState extends State<BasicVideoExample> {
         onJoinChannelSuccess: (RtcConnection connection, int elapsed) {
           debugPrint('local user ${connection.localUid} joined');
           setState(() {
+            _localUid = connection.localUid;
             _localUserJoined = true;
           });
         },
@@ -116,24 +118,40 @@ class _BasicVideoExampleState extends State<BasicVideoExample> {
         ),
         body: Stack(
           children: [
-            Center(
-              child: _remoteVideo(),
+            Align(
+              alignment: Alignment.topRight,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: Column(
+                  children: [
+                    Text("Remote User : ${_remoteUid ?? 'Not Joined'}"),
+                    _remoteVideo(),
+                  ],
+                ),
+              ),
             ),
             Align(
               alignment: Alignment.topLeft,
-              child: SizedBox(
-                width: 100,
-                height: 150,
-                child: Center(
-                  child: _localUserJoined
-                      ? AgoraVideoView(
-                          controller: VideoViewController(
-                            rtcEngine: _engine,
-                            canvas: const VideoCanvas(uid: 0),
-                          ),
-                        )
-                      : const CircularProgressIndicator(),
-                ),
+              child: Column(
+                children: [
+                  Text("Local User ; ${_localUid ?? 'Not Joined'}"),
+                  SizedBox(
+                    width: 100,
+                    height: 150,
+                    child: Center(
+                      child: _localUserJoined
+                          ? AgoraVideoView(
+                              controller: VideoViewController(
+                                rtcEngine: _engine,
+                                canvas: const VideoCanvas(
+                                  uid: 0,
+                                ),
+                              ),
+                            )
+                          : const CircularProgressIndicator(),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
@@ -145,11 +163,15 @@ class _BasicVideoExampleState extends State<BasicVideoExample> {
   // Widget to display remote video
   Widget _remoteVideo() {
     if (_remoteUid != null) {
-      return AgoraVideoView(
-        controller: VideoViewController.remote(
-          rtcEngine: _engine,
-          canvas: VideoCanvas(uid: _remoteUid),
-          connection: RtcConnection(channelId: config.channelId),
+      return SizedBox(
+        width: 150,
+        height: 150,
+        child: AgoraVideoView(
+          controller: VideoViewController.remote(
+            rtcEngine: _engine,
+            canvas: VideoCanvas(uid: _remoteUid),
+            connection: RtcConnection(channelId: config.channelId),
+          ),
         ),
       );
     } else {

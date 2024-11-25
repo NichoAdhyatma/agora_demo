@@ -25,13 +25,15 @@
 	<key>LSRequiresIPhoneOS</key>
          <true/>
          <key>NSCameraUsageDescription</key>
-         <string>ulearning requires access to the camera so you can take photos to show profile.</string>
+         <string>this app requires access to the camera</string>
+
+         <key>NSMicrophoneUsageDescription</key>
+         <string>this app requires access to the Microphone</string>
 
          <key>NSLocationWhenInUseUsageDescription</key>
          <string>The app needs the location, Get the location of your city and match the corresponding profile</string>
 
-         <key>NSMicrophoneUsageDescription</key>
-         <string>ulearning requires access to the Microphone so you can take call.</string>
+
 
          <key>NSPhotoLibraryUsageDescription</key>
          <string>ulearning requires access to the photos library so you can upload photos of profile.</string>

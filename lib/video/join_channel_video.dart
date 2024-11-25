@@ -32,7 +32,7 @@ class _State extends State<JoinChannelVideo> {
   bool _isUseFlutterTexture = false;
   bool _isUseAndroidSurfaceView = false;
   ChannelProfileType _channelProfileType =
-      ChannelProfileType.channelProfileCommunication;
+      ChannelProfileType.channelProfileLiveBroadcasting;
   late final RtcEngineEventHandler _rtcEngineEventHandler;
 
   @override
