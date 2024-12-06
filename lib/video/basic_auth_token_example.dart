@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:agora_sdk_example/components/channel_manager.dart';
 import 'package:agora_sdk_example/models/user_agora.dart';
+import 'package:agora_sdk_example/video/prejoin_page.dart';
 import 'package:agora_sdk_example/widgets/video/video_view.dart';
 import 'package:flutter/material.dart';
 import 'package:agora_sdk_example/config/agora.config.dart' as config;
@@ -18,7 +19,7 @@ class BasicAuthTokenExample extends StatelessWidget {
     return const MaterialApp(
       title: 'Agora SDK Example',
       debugShowCheckedModeBanner: false,
-      home: JoinChannelVideoToken(),
+      home: PrejoinPage(),
     );
   }
 }
