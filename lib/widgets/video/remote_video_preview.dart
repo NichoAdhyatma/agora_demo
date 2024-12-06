@@ -1,4 +1,6 @@
 
+import 'dart:developer';
+
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:agora_sdk_example/models/user_agora.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +21,8 @@ class RemoteVideoPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log('RemoteVideoPreview: ${user.isMicOn}');
+    log('RemoteVideoPreview: ${user.isCameraOn}');
     return Stack(
       children: [
         user.isCameraOn

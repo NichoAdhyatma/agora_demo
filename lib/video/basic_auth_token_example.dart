@@ -89,8 +89,6 @@ class _State extends State<JoinChannelVideoToken> {
           });
         },
         onUserJoined: (RtcConnection connection, int rUid, int elapsed) {
-          log("Local UID : ${connection.localUid}");
-          log("$rUid");
           setState(() {
             userRemote.add(
               UserAgora(
@@ -103,6 +101,22 @@ class _State extends State<JoinChannelVideoToken> {
             (RtcConnection connection, int rUid, UserOfflineReasonType reason) {
           setState(() {
             userRemote.removeWhere((element) => element.uid == rUid);
+          });
+        },
+        onUserMuteVideo: (RtcConnection connection, int rUid, bool muted) {
+          log("User Mute Video: $rUid, $muted");
+          var user = userRemote.firstWhere((element) => element.uid == rUid);
+
+          setState(() {
+            user.isCameraOn = !muted;
+          });
+        },
+        onUserMuteAudio: (RtcConnection connection, int rUid, bool muted) {
+          log("User Mute Audio: $rUid, $muted");
+          var user = userRemote.firstWhere((element) => element.uid == rUid);
+
+          setState(() {
+            user.isMicOn = !muted;
           });
         },
         onLeaveChannel: (RtcConnection connection, RtcStats stats) {
@@ -125,39 +139,12 @@ class _State extends State<JoinChannelVideoToken> {
             needJoinChannel: false,
           );
         },
-        onRemoteVideoStateChanged: (
-          RtcConnection connection,
-          int rUid,
-          RemoteVideoState state,
-          RemoteVideoStateReason reason,
-          int elapsed,
-        ) {
-          var user = userRemote.firstWhere((element) => element.uid == rUid);
-
-          setState(() {
-            user.isCameraOn =
-                state == RemoteVideoState.remoteVideoStateStarting ||
-                    state == RemoteVideoState.remoteVideoStateDecoding;
-          });
-        },
-        onRemoteAudioStateChanged: (
-          RtcConnection connection,
-          int rUid,
-          RemoteAudioState state,
-          RemoteAudioStateReason reason,
-          int elapsed,
-        ) {
-          var user = userRemote.firstWhere((element) => element.uid == rUid);
-
-          setState(() {
-            user.isMicOn = state == RemoteAudioState.remoteAudioStateStarting ||
-                state == RemoteAudioState.remoteAudioStateDecoding;
-          });
-        },
       ),
     );
 
     await _engine.enableVideo();
+
+    await _engine.enableAudio();
 
     await _engine.startPreview();
 
